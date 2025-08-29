@@ -6,12 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+notes-bc6bc-firebase-adminsdk-fbsvc-46189ed7c9.json
 node_modules
 dist
 dist-ssr
 *.local
-notes-bc6bc-firebase-adminsdk-fbsvc-d5cdbdca1c.json
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
