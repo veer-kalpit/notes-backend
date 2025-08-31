@@ -10,6 +10,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
+
+app.get("/", (_, res) => res.send("Server is live"));
+
 const corsOrigin = process.env.CORS_ORIGIN || "http://localhost:5173";
 app.use(
  cors({
