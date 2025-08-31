@@ -81,15 +81,21 @@ const Reigster = async (req: Request, res: Response): Promise<Response> => {
 
 const VerfiyEmail = async (req: Request, res: Response): Promise<Response> => {
  try {
-  const {code} = req.body;
+  const {email, code} = req.body;
+  if (!email || !code) {
+   return res
+    .status(400)
+    .json({success: false, message: "Email and code are required"});
+  }
   const user = await Usermodel.findOne({
+   email,
    verficationToken: code,
    verficationTokenExpiresAt: {$gt: Date.now()},
   });
   if (!user) {
    return res
     .status(400)
-    .json({success: false, message: "Inavlid or Expired Code"});
+    .json({success: false, message: "Invalid or Expired Code"});
   }
 
   user.isVerified = true;
@@ -99,7 +105,7 @@ const VerfiyEmail = async (req: Request, res: Response): Promise<Response> => {
   await sendWelcomeEmail(user.email, user.name);
   return res
    .status(200)
-   .json({success: true, message: "Email Verifed Successfully"});
+   .json({success: true, message: "Email Verified Successfully"});
  } catch (error) {
   console.log(error);
   return res
