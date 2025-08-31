@@ -11,7 +11,7 @@ export const sendVerificationEamil = async (
 ): Promise<void> => {
  try {
   const response: SentMessageInfo = await transporter.sendMail({
-   from: '"Zahid" <veerkalpit@gmail.com>',
+   from: '"Kalpit Thakur" <veerkalpit@gmail.com>',
    to: email, 
    subject: "Verify your Email", 
    text: "Verify your Email",
@@ -32,7 +32,7 @@ export const sendWelcomeEmail = async (
 ): Promise<void> => {
  try {
   const response: SentMessageInfo = await transporter.sendMail({
-   from: '"Kalpit" <veerkalpit@gmail.com>',
+   from: '"Kalpit Thakur" <veerkalpit@gmail.com>',
    to: email, 
    subject: "Welcome Email", 
    text: "Welcome Email",

@@ -104,9 +104,13 @@ const Login = async (req: Request, res: Response): Promise<Response> => {
   user.lastLogin = new Date();
   await user.save();
   const token = generateTokenAndSetCookies(res, user._id.toString());
-  return res
-   .status(200)
-   .json({success: true, message: "Login successful", token});
+  return res.status(200).json({
+   success: true,
+   message: "Login successful",
+   token,
+   name: user.name,
+   email: user.email,
+  });
  } catch (error) {
   console.log(error);
   return res

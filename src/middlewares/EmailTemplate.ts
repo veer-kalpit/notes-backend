@@ -69,9 +69,6 @@ export const Verification_Email_Template = `
               <span class="verification-code">{verificationCode}</span>
               <p>If you did not create an account, no further action is required. If you have any questions, feel free to contact our support team.</p>
           </div>
-          <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} Your Company. All rights reserved.</p>
-          </div>
       </div>
   </body>
   </html>
@@ -117,22 +114,6 @@ export const Welcome_Email_Template = `
               font-size: 18px;
               margin: 20px 0;
           }
-          .button {
-              display: inline-block;
-              padding: 12px 25px;
-              margin: 20px 0;
-              background-color: #007BFF;
-              color: white;
-              text-decoration: none;
-              border-radius: 5px;
-              text-align: center;
-              font-size: 16px;
-              font-weight: bold;
-              transition: background-color 0.3s;
-          }
-          .button:hover {
-              background-color: #0056b3;
-          }
           .footer {
               background-color: #f4f4f4;
               padding: 15px;
@@ -148,21 +129,18 @@ export const Welcome_Email_Template = `
   </head>
   <body>
       <div class="container">
-          <div class="header">Welcome to Our Community!</div>
+          <div class="header">Welcome to Our Family!</div>
           <div class="content">
               <p class="welcome-message">Hello {name},</p>
-              <p>We’re thrilled to have you join us! Your registration was successful, and we’re committed to providing you with the best experience possible.</p>
-              <p>Here’s how you can get started:</p>
+              <p>We’re thrilled to have you join our <strong>Note App</strong>! Your registration was successful, and we’re committed to providing you with the best note-taking experience possible.</p>
+              <p>Here’s how you can get started with our Note App:</p>
               <ul>
-                  <li>Explore our features and customize your experience.</li>
-                  <li>Stay informed by checking out our blog for the latest updates and tips.</li>
+                  <li>Create, organize, and manage your notes effortlessly.</li>
+                  <li>Access your notes anytime, anywhere, on any device.</li>
+                  <li>Stay productive with our intuitive and user-friendly interface.</li>
                   <li>Reach out to our support team if you have any questions or need assistance.</li>
               </ul>
-              <a href="#" class="button">Get Started</a>
               <p>If you need any help, don’t hesitate to contact us. We’re here to support you every step of the way.</p>
-          </div>
-          <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} Your Company. All rights reserved.</p>
           </div>
       </div>
   </body>
