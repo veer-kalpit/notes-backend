@@ -1,39 +1,3 @@
-const Login = async (req: Request, res: Response): Promise<Response> => {
- try {
-  const {email, password} = req.body;
-  if (!email || !password) {
-   return res
-    .status(400)
-    .json({success: false, message: "Email and password are required"});
-  }
-  const user = await Usermodel.findOne({email});
-  if (!user) {
-   return res
-    .status(400)
-    .json({success: false, message: "Invalid credentials"});
-  }
-  if (!user.isVerified) {
-   return res.status(403).json({success: false, message: "Email not verified"});
-  }
-  const isMatch = await bcryptjs.compare(password, user.password);
-  if (!isMatch) {
-   return res
-    .status(400)
-    .json({success: false, message: "Invalid credentials"});
-  }
-  user.lastLogin = new Date();
-  await user.save();
-  const token = generateTokenAndSetCookies(res, user._id.toString());
-  return res
-   .status(200)
-   .json({success: true, message: "Login successful", token});
- } catch (error) {
-  console.log(error);
-  return res
-   .status(500)
-   .json({success: false, message: "Internal server error"});
- }
-};
 import {sendVerificationEamil, sendWelcomeEmail} from "../middlewares/Email";
 import {generateTokenAndSetCookies} from "../middlewares/GenerateToken";
 import {Usermodel} from "../models/User";
@@ -111,6 +75,43 @@ const VerfiyEmail = async (req: Request, res: Response): Promise<Response> => {
   return res
    .status(400)
    .json({success: false, message: "internal server error"});
+ }
+};
+
+const Login = async (req: Request, res: Response): Promise<Response> => {
+ try {
+  const {email, password} = req.body;
+  if (!email || !password) {
+   return res
+    .status(400)
+    .json({success: false, message: "Email and password are required"});
+  }
+  const user = await Usermodel.findOne({email});
+  if (!user) {
+   return res
+    .status(400)
+    .json({success: false, message: "Invalid credentials"});
+  }
+  if (!user.isVerified) {
+   return res.status(403).json({success: false, message: "Email not verified"});
+  }
+  const isMatch = await bcryptjs.compare(password, user.password);
+  if (!isMatch) {
+   return res
+    .status(400)
+    .json({success: false, message: "Invalid credentials"});
+  }
+  user.lastLogin = new Date();
+  await user.save();
+  const token = generateTokenAndSetCookies(res, user._id.toString());
+  return res
+   .status(200)
+   .json({success: true, message: "Login successful", token});
+ } catch (error) {
+  console.log(error);
+  return res
+   .status(500)
+   .json({success: false, message: "Internal server error"});
  }
 };
 

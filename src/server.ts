@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import notesRoutes from "./routes/notes";
 import authRoutes from "./routes/auth";
 import {connectDB} from "./config/db";
+import noteRoutes from "./routes/note";
 
 dotenv.config();
 
@@ -21,8 +21,8 @@ app.use(
 );
 
 app.get("/health", (_, res) => res.json({status: "ok"}));
-app.use("/api/notes", notesRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/notes", noteRoutes);
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 5000;
 const MONGO_URI = process.env.MONGO_URI || "";
