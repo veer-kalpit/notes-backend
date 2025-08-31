@@ -1,19 +1,16 @@
-// src/models/Note.ts
-import {Schema, model, Document} from "mongoose";
+import mongoose, {Document, Schema} from "mongoose";
 
 export interface INote extends Document {
- text: string;
- userId: string; // firebase uid
- createdAt: Date;
- updatedAt: Date;
+ user: mongoose.Types.ObjectId;
+ content: string;
 }
 
-const NoteSchema = new Schema<INote>(
+const noteSchema = new Schema<INote>(
  {
-  text: {type: String, required: true},
-  userId: {type: String, required: true, index: true},
+  user: {type: Schema.Types.ObjectId, ref: "User", required: true},
+  content: {type: String, required: true},
  },
  {timestamps: true}
 );
 
-export default model<INote>("Note", NoteSchema);
+export default mongoose.model<INote>("Note", noteSchema);

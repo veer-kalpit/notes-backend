@@ -20,9 +20,7 @@ app.use(
  })
 );
 
-
 app.get("/health", (_, res) => res.json({status: "ok"}));
-
 app.use("/api/notes", notesRoutes);
 app.use("/api/auth", authRoutes);
 
